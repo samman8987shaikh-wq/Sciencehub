@@ -17,6 +17,181 @@
     </style>
 </head>
 <body>
-    <!-- Bilkul kuch nahi - completely blank -->
+    .menu-dropdown {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    min-width: 260px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(16px);
+    border-radius: 24px;
+    padding: 0.6rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px) scale(0.96);
+    transition: all 0.22s ease;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+.menu-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px) scale(1);
+}
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0.9rem 1.6rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #e2e8f0;
+    cursor: pointer;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+}
+.menu-item:hover {
+    background: rgba(255,255,255,0.1);
+    border-left-color: #38bdf8;
+    color: white;
+}
+.menu-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 0.5rem 1rem;
+}
+.menu-dropdown {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    min-width: 260px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(16px);
+    border-radius: 24px;
+    padding: 0.6rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px) scale(0.96);
+    transition: all 0.22s ease;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+.menu-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px) scale(1);
+}
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0.9rem 1.6rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #e2e8f0;
+    cursor: pointer;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+}
+.menu-item:hover {
+    background: rgba(255,255,255,0.1);
+    border-left-color: #38bdf8;
+    color: white;
+}
+.menu-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 0.5rem 1rem;
+}
+        .hero-section {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .hero-section p {
+            color: #94a3b8;
+            margin-top: 1rem;
+        }
+        .card-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+        .info-card {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .info-card h3 { color: #cbd5e1; margin-bottom: 0.6rem; }
+        .info-card p { color: #94a3b8; font-size: 0.9rem; }
+        .footer-note {
+            text-align: center;
+            margin-top: 3rem;
+            color: #64748b;
+            font-size: 0.8rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        @media (max-width: 650px) {
+            .hero-section h1 { font-size: 2rem; }
+            .menu-dropdown { min-width: 220px; }
+            .app-container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <div class="top-bar">
+        <div class="three-dot-btn" id="threeDotBtn">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+        <div class="menu-dropdown" id="menuDropdown">
+            <a href="privacy.html" class="menu-item">🔒 Privacy Policy</a>
+            <a href="about.html" class="menu-item">📘 About Us</a>
+            <a href="contact.html" class="menu-item">✉️ Contact Us</a>
+            <div class="menu-divider"></div>
+            <a href="faq.html" class="menu-item">❓ Help & FAQ</a>
+        </div>
+        <div style="width:48px;"></div>
+    </div>
+    <div class="hero-section">
+        <h1>Precision · Clarity · Flow</h1>
+        <p>Three-dot menu in top-left. Click anywhere outside to close.</p>
+    </div>
+    <div class="card-preview">
+        <div class="info-card"><h3>🌿 Essence</h3><p>Minimal & clean design</p></div>
+        <div class="info-card"><h3>🚀 Agility</h3><p>Smooth dropdown</p></div>
+        <div class="info-card"><h3>🎯 Precision</h3><p>Outside-click dismiss</p></div>
+    </div>
+    <div class="footer-note">✦ Nexus interface — control at your fingertips ✦</div>
+</div>
+<script>
+    const btn = document.getElementById('threeDotBtn');
+    const menu = document.getElementById('menuDropdown');
+    function closeMenu() { menu.classList.remove('open'); }
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.classList.toggle('open');
+    });
+    document.addEventListener('click', (e) => {
+        if (!btn.contains(e.target) && !menu.contains(e.target)) closeMenu();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+</script>
+</body>
+</html>        
 </body>
 </html>
